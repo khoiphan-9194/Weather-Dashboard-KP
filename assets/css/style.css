@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  line-height: 1.5;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background-image: linear-gradient(
+    to right,
+    rgba(17, 70, 135, 0.221),
+    rgb(62, 20, 201)
+  );
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+
+  height: auto;
+  width: 80%;
+  border: 1px rgb(0, 76, 255) solid;
+  border-radius: 80px;
+  box-shadow: 0 0 15px 10px #097175;
+  margin: 25px;
+
+}
+
+
+
+.main-layout {
+  margin: 25px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content:space-between;
+  width: 100%;
+
+  background-color: brown;
+  
+
+  
+}
+
+.weather-search{
+
+  background-color: #2f7509;
+  width: 25%;
+  height: auto;
+  padding: 10px;
+  margin: 15px;
+}
+.weather-data{
+  background-color: #2f7509;
+  width: 80%;
+  padding: 10px;
+  margin: 20px;
+
+
+  
+}
+
+.weather-input{
+
+
+  margin: 10px 0px;
+ 
+}
+
+.city-input{
+  width: fit-content;
+  
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+
+
+
+
+header h1 {
+  margin: 30px 0;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+header h5 {
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+.footer {
+  padding: 30px;
+  clear: both;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+.footer h2,
+a {
+  font-size: 40px;
+}
