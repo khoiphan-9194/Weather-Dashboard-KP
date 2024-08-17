@@ -5,6 +5,7 @@ const GEOTOMTOM_API_KEY = "fEpXmh3qP1JYzUnM3EIZjqSnqkCkvAPk";
 var redirectUrl = './404.html';
 let weatherDetails = document.querySelector(".weather-detail");
 
+
 const cityList = [];
 const butt_arr = [];
 
@@ -62,7 +63,7 @@ return ObjectLocation;
  async function GETWEATHER(obJectLocation){
   try{
   const ObjectWeather = {};
-  const weatherLocation = await obJectLocation;
+  const  weatherLocation = await obJectLocation;
   console.log(weatherLocation);
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${weatherLocation.lat}&lon=${weatherLocation.lon}&appid=${WEATHER_API_KEY}`;
   console.log(WEATHER_URL);
@@ -91,36 +92,44 @@ return ObjectLocation;
  }
   
 
- (async () => {
- console.log((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
-//  $(".2").text((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
-// // weatherDetails.childen[0].text((await GETWEATHER(GETGEOLocation('sunnyvale'))).weather);
-// console.log(weatherDetails.children[0])
-// weatherDetails.children[0].textContent = (await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName;
+//  (async () => {
+//  console.log((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
+// //  $(".2").text((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
+// // // weatherDetails.childen[0].text((await GETWEATHER(GETGEOLocation('sunnyvale'))).weather);
+// // console.log(weatherDetails.children[0])
+// // weatherDetails.children[0].textContent = (await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName;
 
 
-})();
+// })();
 
 async function displayWeather(placeName){
-  const tempF = Math.round((await GETWEATHER(GETGEOLocation(placeName))).temp * 9/5 - 459.67);
+  const displayWeatherObject = await GETWEATHER(GETGEOLocation(placeName));
+  const displayLocationName = await GETGEOLocation(placeName);
+  console.log(displayWeatherObject);
+  //const tempF = Math.round((await GETWEATHER(GETGEOLocation(placeName))).temp * 9/5 - 459.67);
+  const tempF = Math.round((displayWeatherObject.temp - 273.15) * 9/5 + 32);
+  console.log(tempF);
+  console.log(displayWeatherObject.weather);
+  console.log(displayWeatherObject.humidity);
+  console.log(displayWeatherObject.wind_speed);
+  console.log(displayWeatherObject.icon);
+   weatherDetails.children[0].textContent = displayLocationName.locationName;
+   weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
+   weatherDetails.children[2].textContent = `Wind: ${displayWeatherObject.wind_speed} MPH`;
+   weatherDetails.children[3].textContent = `Humidity: ${displayWeatherObject.humidity}%`;  
+  console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
 
-  weatherDetails.children[0].textContent = (await GETWEATHER(GETGEOLocation(placeName))).locationName;
-  weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
-  weatherDetails.children[2].textContent = `Wind: ${(await GETWEATHER(GETGEOLocation(placeName))).wind_speed} MPH`;
-  weatherDetails.children[3].textContent = `Humidity: ${(await GETWEATHER(GETGEOLocation(placeName))).humidity}%`;
-  
-console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
-  $("img").attr(
-    "src",
-     `assets/${(await GETWEATHER(GETGEOLocation(placeName))).icon}.webp`
-
-  );
-
+  //This demonstrates how to use bootstrap to display the weather icon
+$(".weather-icon img").attr(
+  "src",
+   `assets/img/${displayWeatherObject.icon}.webp`
+);
+$(".weather-icon h3").text(displayWeatherObject.weather);
 
 }
 
 
-displayWeather("da nang");
+displayWeather("las vegas");
 
 
 
