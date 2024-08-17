@@ -5,6 +5,9 @@ const GEOTOMTOM_API_KEY = "fEpXmh3qP1JYzUnM3EIZjqSnqkCkvAPk";
 var redirectUrl = './404.html';
 let weatherDetails = document.querySelector(".weather-detail");
 
+let searchBtn = document.querySelector(".search-btn");
+let searchInput = document.querySelector(".city-input");
+
 
 const cityList = [];
 const butt_arr = [];
@@ -113,24 +116,54 @@ async function displayWeather(placeName){
   console.log(displayWeatherObject.humidity);
   console.log(displayWeatherObject.wind_speed);
   console.log(displayWeatherObject.icon);
-   weatherDetails.children[0].textContent = displayLocationName.locationName;
-   weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
-   weatherDetails.children[2].textContent = `Wind: ${displayWeatherObject.wind_speed} MPH`;
-   weatherDetails.children[3].textContent = `Humidity: ${displayWeatherObject.humidity}%`;  
+  console.log(displayWeatherObject.weather);
+
+  const arrayWeatherDisPlay = [displayLocationName.locationName, `Temp: ${tempF}°F`, 
+                              `Wind: ${displayWeatherObject.wind_speed} MPH`, 
+                              `Humidity: ${displayWeatherObject.humidity}%`,
+                              `Condition: ${displayWeatherObject.weather}`];
+
+  for(let i =0; i<weatherDetails.children.length; i++){
+
+    weatherDetails.children[i].textContent = arrayWeatherDisPlay[i];
+  }
+  //  weatherDetails.children[0].textContent = displayLocationName.locationName;
+  //  weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
+  //  weatherDetails.children[2].textContent = `Wind: ${displayWeatherObject.wind_speed} MPH`;
+  //  weatherDetails.children[3].textContent = `Humidity: ${displayWeatherObject.humidity}%`;  
   console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
 
   //This demonstrates how to use bootstrap to display the weather icon
-$(".weather-icon img").attr(
-  "src",
-   `assets/img/${displayWeatherObject.icon}.webp`
-);
+// $(".weather-icon img").attr(
+//   "src",
+//    `assets/img/${displayWeatherObject.icon}.webp`
+// );
 $(".weather-icon h3").text(displayWeatherObject.weather);
+$(".weather-data").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
+$(".weather-data").css("background-size", "75% auto");
+$(".weather-data").css("background-repeat", "no-repeat");
+$(".weather-data").css("background-position", "right");
+
+
+
 
 }
 
 
-displayWeather("las vegas");
 
+
+// searchBtn.addEventListener("click", function(){
+//   alert('search button clicked');
+// });
+
+function handleSearchBtnClick(event){
+  event.preventDefault();
+  console.log(searchInput.value);
+  displayWeather(searchInput.value);
+  searchInput.value = "";
+}
+
+searchBtn.addEventListener("click", handleSearchBtnClick);//
 
 
 

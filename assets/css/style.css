@@ -8,10 +8,14 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   line-height: 1.5;
-  background-color: bisque;
+ background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60');
   display: flex;
   flex-direction: column;
   align-items: center;
+;
+  
+
+
 }
 
 header {
@@ -39,7 +43,7 @@ header {
 
 
 .main-layout {
-  margin: 25px;
+  margin: 30px;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -47,8 +51,9 @@ header {
   align-items: center;
   justify-content:space-between;
   width: 100%;
+ 
 
-  background-color: brown;
+
   
 
   
@@ -56,20 +61,51 @@ header {
 
 .weather-search{
 
-  background-color: #2f7509;
-  width: 25%;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
+  width: auto;
   height: auto;
-  padding: 10px;
-  margin: 15px;
+  padding: 50px;
+  margin-left: 30px;
+  border-radius: 50px;
+  box-shadow: 0 0 15px 10px #3f3a3a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+  
+
 }
 .weather-data{
-  background-color: #2f7509;
-  width: 80%;
-  padding: 10px;
-  margin: 20px;
 
+  width: 70%;
+  height: auto;
+
+border-radius: 40px;
+background-color: #000;
+box-shadow: 0 0 15px 10px #f0ebeb;
+  
 
   
+}
+
+.weather-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 100px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
+  border-radius: 100px;
+  box-shadow: 0 0 15px 10px #097175;
+  color: whitesmoke;
+  font-size: 20px;
+  font-weight: bolder;
+  width: 30%;
+  height: 320px;
+
 }
 
 .weather-input{
@@ -107,11 +143,15 @@ header h5 {
 
 
 .footer {
-  padding: 30px;
+  padding: 5px;
   clear: both;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   text-align: center;
+ 
+  color:rgb(215, 229, 215);
+  text-shadow: #000 3px 3px 3px;
+
 }
 
 .footer h2,
