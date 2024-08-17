@@ -29,17 +29,17 @@ console.log(locationTOMTOM);
 const response = await fetch(locationTOMTOM);
 if (response.status !== 200) {
 
-  // document.location.href = redirectUrl;
+  document.location.href = redirectUrl;
   
 }
 const locationData = await response.json();
 console.log(locationData);
-  // if(confirm(`Did you mean ${locationData.results[0].address.freeformAddress.split(', ')[0]}, ${locationData.results[0].address.countrySubdivision} 
-  //   ${locationData.results[0].address.country} ?`) == false) // if the user click cancel, then alert the user to re-check the input
-  // {
-  //   console.log('cancel');
-  //   return alert(`${locationName} is invalid, please re-check the input`); 
-  // }
+  if(confirm(`Did you mean ${locationData.results[0].address.freeformAddress.split(', ')[0]}, ${locationData.results[0].address.countrySubdivision} 
+    ${locationData.results[0].address.country} ?`) == false) // if the user click cancel, then alert the user to re-check the input
+  {
+    console.log('cancel');
+    return alert(`${locationName} is invalid, please re-check the input`); 
+  }
 
 ObjectLocation.locationName = locationData.results[0].address.freeformAddress;
 ObjectLocation.lat = locationData.results[0].position.lat;
@@ -107,7 +107,7 @@ return ObjectLocation;
 
 async function displayWeather(placeName){
   const displayWeatherObject = await GETWEATHER(GETGEOLocation(placeName));
-  const displayLocationName = await GETGEOLocation(placeName);
+  //const displayLocationName = await GETGEOLocation(placeName);
   console.log(displayWeatherObject);
   //const tempF = Math.round((await GETWEATHER(GETGEOLocation(placeName))).temp * 9/5 - 459.67);
   const tempF = Math.round((displayWeatherObject.temp - 273.15) * 9/5 + 32);
@@ -118,7 +118,7 @@ async function displayWeather(placeName){
   console.log(displayWeatherObject.icon);
   console.log(displayWeatherObject.weather);
 
-  const arrayWeatherDisPlay = [displayLocationName.locationName, `Temp: ${tempF}°F`, 
+  const arrayWeatherDisPlay = [displayWeatherObject.locationName, `Temp: ${tempF}°F`, 
                               `Wind: ${displayWeatherObject.wind_speed} MPH`, 
                               `Humidity: ${displayWeatherObject.humidity}%`,
                               `Condition: ${displayWeatherObject.weather}`];
@@ -131,7 +131,7 @@ async function displayWeather(placeName){
   //  weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
   //  weatherDetails.children[2].textContent = `Wind: ${displayWeatherObject.wind_speed} MPH`;
   //  weatherDetails.children[3].textContent = `Humidity: ${displayWeatherObject.humidity}%`;  
-  console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
+  //console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
 
   //This demonstrates how to use bootstrap to display the weather icon
 // $(".weather-icon img").attr(
