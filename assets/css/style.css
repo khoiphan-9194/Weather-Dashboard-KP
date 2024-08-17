@@ -158,3 +158,30 @@ header h5 {
 a {
   font-size: 40px;
 }
+
+@media screen and (max-width: 500px) {
+  header h1 {
+    font-size: 30px;
+  }
+
+  header h5 {
+    font-size: 20px;
+  }
+
+  .main-layout {
+    flex-direction:column-reverse
+    
+  }
+
+  .weather-search {
+    margin: 10px;
+  }
+
+  .weather-detail {
+    display: flex;
+    text-shadow: #000 3px 3px 3px;
+    font-size: 10px;
+   width: 20%;
+  }
+  
+}

@@ -107,6 +107,10 @@ return ObjectLocation;
 
 async function displayWeather(placeName){
   const displayWeatherObject = await GETWEATHER(GETGEOLocation(placeName));
+  //
+  
+  
+  
   //const displayLocationName = await GETGEOLocation(placeName);
   console.log(displayWeatherObject);
   //const tempF = Math.round((await GETWEATHER(GETGEOLocation(placeName))).temp * 9/5 - 459.67);
