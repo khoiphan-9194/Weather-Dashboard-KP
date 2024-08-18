@@ -34,12 +34,12 @@ if (response.status !== 200) {
 }
 const locationData = await response.json();
 console.log(locationData);
-  if(confirm(`Did you mean ${locationData.results[0].address.freeformAddress.split(', ')[0]}, ${locationData.results[0].address.countrySubdivision} 
-    ${locationData.results[0].address.country} ?`) == false) // if the user click cancel, then alert the user to re-check the input
-  {
-    console.log('cancel');
-    return alert(`${locationName} is invalid, please re-check the input`); 
-  }
+  // if(confirm(`Did you mean ${locationData.results[0].address.freeformAddress.split(', ')[0]}, ${locationData.results[0].address.countrySubdivision} 
+  //   ${locationData.results[0].address.country} ?`) == false) // if the user click cancel, then alert the user to re-check the input
+  // {
+  //   console.log('cancel');
+  //   return alert(`${locationName} is invalid, please re-check the input`); 
+  // }
 
 ObjectLocation.locationName = locationData.results[0].address.freeformAddress;
 ObjectLocation.lat = locationData.results[0].position.lat;
@@ -144,7 +144,8 @@ async function displayWeather(placeName){
 // );
 $(".weather-icon h3").text(displayWeatherObject.weather);
 $(".weather-data").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
-$(".weather-data").css("background-size", "75% auto");
+//$(".weather-data").css("background-size", "75% auto");
+$(".weather-data").css("background-size", "100%");
 $(".weather-data").css("background-repeat", "no-repeat");
 $(".weather-data").css("background-position", "right");
 
@@ -169,6 +170,6 @@ function handleSearchBtnClick(event){
 
 searchBtn.addEventListener("click", handleSearchBtnClick);//
 
-
+displayWeather('sunnyvale');
 
 

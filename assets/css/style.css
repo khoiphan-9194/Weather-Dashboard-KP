@@ -179,9 +179,23 @@ a {
 
   .weather-detail {
     display: flex;
+    flex-direction: column;
     text-shadow: #000 3px 3px 3px;
-    font-size: 10px;
-   width: 20%;
-  }
+    font-size: 15px;
+   width: 30%;
+
   
+  
+   
+  }
+  .weather-data{
+    width: 100%;
+
+
+
+
+    
+    
+  
+  }
 }
