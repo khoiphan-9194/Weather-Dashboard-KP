@@ -10,7 +10,7 @@ let searchInput = document.querySelector(".city-input");
 
 
 const cityList = [];
-//const butt_arr = [];
+const butt_arr = [];
 
  var locationTOMTOM =`https://api.tomtom.com/search/2/geocode/san&jose.json?key=${GEOTOMTOM_API_KEY}&limit=1`
 
@@ -45,16 +45,16 @@ ObjectLocation.locationName = locationData.results[0].address.freeformAddress;
 ObjectLocation.lat = locationData.results[0].position.lat;
 ObjectLocation.lon = locationData.results[0].position.lon;
 
-if(!cityList.includes(ObjectLocation.locationName))
+if(!butt_arr.includes(ObjectLocation.locationName))
 {
 
- // butt_arr.push(ObjectLocation.locationName);
-  cityList.push(ObjectLocation);
+   butt_arr.push(ObjectLocation.locationName);
+   cityList.push(ObjectLocation);
  
 }
 
 console.log(cityList);
-localStorage.setItem('cityList', JSON.stringify(cityList));
+localStorage.setItem('cityListObject', JSON.stringify(cityList));
 
 
 
@@ -170,7 +170,7 @@ $(".weather-data").css("background-position", "right");
 }
 
 
-
+getWeatherHistory();
 
 // searchBtn.addEventListener("click", function(){
 //   alert('search button clicked');
@@ -179,7 +179,6 @@ $(".weather-data").css("background-position", "right");
 function handleSearchBtnClick(event){
   event.preventDefault();
   console.log(searchInput.value);
-  getWeatherHistory();
   displayWeather(searchInput.value);
 
   searchInput.value = "";
@@ -190,31 +189,65 @@ function getWeatherHistory()
 {
   $(".list-group").empty();
  
-  console.log(cityList);
-  if(cityList !== null)
+let RetrievedObject_cityList = JSON.parse(localStorage.getItem('cityListObject'));
+if(RetrievedObject_cityList !== null)
+{
+  for(let i =0; i<RetrievedObject_cityList.length; i++)
   {
-    for(let i =0; i<cityList.length; i++)
-    {
-      console.log(cityList[i].locationName);
-      let listCity = document.createElement('li');
-      let button = document.createElement('button');
-      button.textContent = cityList[i].locationName;
-      button.setAttribute('class', 'btn btn-primary');
-      button.setAttribute('type', 'button');
-      button.setAttribute('id', 'butt'+i);
-    
-      $(".list-group").append(listCity);  
-      
-      listCity.append(button);
-
-    }
+    console.log(RetrievedObject_cityList[i].locationName);
+    let listCity = document.createElement('li');
+    let button = document.createElement('button');
+    button.textContent = RetrievedObject_cityList[i].locationName;         
+    button.setAttribute('class', 'btn btn-primary');
+    button.setAttribute('type', 'button');
+    button.setAttribute('id', 'butt'+i);
+    $(".list-group").append(document.createElement('br')); 
+    $(".list-group").append(listCity);  
+    listCity.append(button);
   }
 
+  let clearButton = document.createElement('button');
+  clearButton.textContent = 'Clear History';
+  clearButton.setAttribute('class', 'btn btn-primary');
+  clearButton.setAttribute('type', 'button');
+  $(".list-group").append(document.createElement('br'));
+  $(".list-group").append(clearButton);
+
+  clearButton.addEventListener('click', function(){
+    localStorage.clear();
+    $(".list-group").empty();
+    window.location.reload();
+    
+  });
+  
+  
+}
+
+else{
+  alert('no city list');
+}
+  
   //let cityList = JSON.parse(localStorage.getItem('cityList'));
 
-  
-  
  
+}
+
+
+
+function clearHistory(){
+
+  let clearButton = document.createElement('button');
+  clearButton.textContent = 'Clear History';
+  clearButton.setAttribute('class', 'btn btn-primary');
+  clearButton.setAttribute('type', 'button');
+  $(".list-group").append(document.createElement('br'));
+  $(".list-group").append(clearButton);
+
+  clearButton.addEventListener('click', function(){
+    localStorage.clear();
+    $(".list-group").empty();
+  });
+
 }
 
 
