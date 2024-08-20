@@ -10,7 +10,7 @@ let searchInput = document.querySelector(".city-input");
 
 
 const cityList = [];
-const butt_arr = [];
+//const butt_arr = [];
 
  var locationTOMTOM =`https://api.tomtom.com/search/2/geocode/san&jose.json?key=${GEOTOMTOM_API_KEY}&limit=1`
 
@@ -44,7 +44,24 @@ console.log(locationData);
 ObjectLocation.locationName = locationData.results[0].address.freeformAddress;
 ObjectLocation.lat = locationData.results[0].position.lat;
 ObjectLocation.lon = locationData.results[0].position.lon;
-console.log(ObjectLocation.lat);
+
+if(!cityList.includes(ObjectLocation.locationName))
+{
+
+ // butt_arr.push(ObjectLocation.locationName);
+  cityList.push(ObjectLocation);
+ 
+}
+
+console.log(cityList);
+localStorage.setItem('cityList', JSON.stringify(cityList));
+
+
+
+
+
+
+
 return ObjectLocation;
 
   }
@@ -79,12 +96,10 @@ return ObjectLocation;
   console.log(weatherData);
   ObjectWeather.weather = weatherData.weather[0].description;
   ObjectWeather.temp = weatherData.main.temp;
-  ObjectWeather.feels_like = weatherData.main.feels_like;
   ObjectWeather.humidity = weatherData.main.humidity;
   ObjectWeather.wind_speed = weatherData.wind.speed;
-  ObjectWeather.uvi = weatherData.uvi;
   ObjectWeather.icon = weatherData.weather[0].icon;
-  ObjectWeather.locationName = weatherData.name + ', ' + weatherData.sys.country;
+  ObjectWeather.locationName = weatherLocation.locationName + ' ' + weatherData.sys.country;
   return ObjectWeather;
   }
   catch(error){
@@ -164,12 +179,47 @@ $(".weather-data").css("background-position", "right");
 function handleSearchBtnClick(event){
   event.preventDefault();
   console.log(searchInput.value);
+  getWeatherHistory();
   displayWeather(searchInput.value);
+
   searchInput.value = "";
 }
 
+
+function getWeatherHistory()
+{
+  $(".list-group").empty();
+ 
+  console.log(cityList);
+  if(cityList !== null)
+  {
+    for(let i =0; i<cityList.length; i++)
+    {
+      console.log(cityList[i].locationName);
+      let listCity = document.createElement('li');
+      let button = document.createElement('button');
+      button.textContent = cityList[i].locationName;
+      button.setAttribute('class', 'btn btn-primary');
+      button.setAttribute('type', 'button');
+      button.setAttribute('id', 'butt'+i);
+    
+      $(".list-group").append(listCity);  
+      
+      listCity.append(button);
+
+    }
+  }
+
+  //let cityList = JSON.parse(localStorage.getItem('cityList'));
+
+  
+  
+ 
+}
+
+
 searchBtn.addEventListener("click", handleSearchBtnClick);//
 
-displayWeather('sunnyvale');
+//displayWeather('sunnyvale');
 
 
