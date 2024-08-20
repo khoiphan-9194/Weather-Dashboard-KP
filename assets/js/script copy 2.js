@@ -45,10 +45,6 @@ if(!butt_arr.includes(ObjectLocation.locationName))
 
 console.log(cityList);
 localStorage.setItem('cityListObject', JSON.stringify(cityList));
-// cityList.forEach((city) => {
-//   city.pop();
-// }
-// );
 
 
 
@@ -104,7 +100,15 @@ return ObjectLocation;
  }
   
 
+//  (async () => {
+//  console.log((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
+// //  $(".2").text((await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName);
+// // // weatherDetails.childen[0].text((await GETWEATHER(GETGEOLocation('sunnyvale'))).weather);
+// // console.log(weatherDetails.children[0])
+// // weatherDetails.children[0].textContent = (await GETWEATHER(GETGEOLocation('sunnyvale'))).locationName;
 
+
+// })();
 
 async function displayWeather(placeName){
   const displayWeatherObject = await GETWEATHER(GETGEOLocation(placeName));
@@ -120,7 +124,17 @@ async function displayWeather(placeName){
 
     weatherDetails.children[i].textContent = arrayWeatherDisPlay[i];
   }
+  //  weatherDetails.children[0].textContent = displayLocationName.locationName;
+  //  weatherDetails.children[1].textContent = `Temp: ${tempF}°F`;
+  //  weatherDetails.children[2].textContent = `Wind: ${displayWeatherObject.wind_speed} MPH`;
+  //  weatherDetails.children[3].textContent = `Humidity: ${displayWeatherObject.humidity}%`;  
+  //console.log((await GETWEATHER(GETGEOLocation(placeName))).icon);
 
+  //This demonstrates how to use bootstrap to display the weather icon
+// $(".weather-icon img").attr(
+//   "src",
+//    `assets/img/${displayWeatherObject.icon}.webp`
+// );
 $(".weather-icon h3").text(displayWeatherObject.weather);
 $(".weather-data").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
 //$(".weather-data").css("background-size", "75% auto");
@@ -141,10 +155,11 @@ function handleSearchBtnClick(event){
 }
 
 
-async function getWeatherHistory()
+function getWeatherHistory()
 {
   $(".list-group").empty();
-let RetrievedObject_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
+ 
+let RetrievedObject_cityList = JSON.parse(localStorage.getItem('cityListObject'));
 if(RetrievedObject_cityList !== null)
 {
   for(let i =0; i<RetrievedObject_cityList.length; i++)
@@ -153,14 +168,11 @@ if(RetrievedObject_cityList !== null)
     let listCity = document.createElement('li');
     let button = document.createElement('button');
     let removeCity = document.createElement('button');
-
     button.textContent = RetrievedObject_cityList[i].locationName; 
-    removeCity.textContent = '❌';        
+    removeCity.textContent = 'Remove';        
     button.setAttribute('class', 'btn btn-primary');
     button.setAttribute('type', 'button');
     button.setAttribute('id', 'butt'+i);
-   
-
     removeCity.setAttribute('class', 'btn btn-danger');
     removeCity.setAttribute('type', 'button');
     removeCity.setAttribute('id', 'removeButt'+i);
@@ -169,38 +181,36 @@ if(RetrievedObject_cityList !== null)
     //   localStorage.setItem('cityListObject', JSON.stringify(RetrievedObject_cityList));
     //   getWeatherHistory();
     // });
+  
     $(".list-group").append(document.createElement('br')); 
     $(".list-group").append(listCity);  
     listCity.append(button);
     button.append(removeCity);
+
+    
  
   }
 
 
 
-
-
-  for(let i =0; i<RetrievedObject_cityList.length; i++)
-  {
-    document.getElementById('butt'+i).addEventListener('click', function(){
-      displayWeather(RetrievedObject_cityList[i].locationName);
-    });
+  // for(let i =0; i<RetrievedObject_cityList.length; i++)
+  // {
+  //   document.getElementById('butt'+i).addEventListener('click', function(){
+  //     displayWeather(RetrievedObject_cityList[i].locationName);
+  //   });
 
    
 
-    document.getElementById('removeButt'+i).addEventListener('click', function(){
-      RetrievedObject_cityList.splice(i, 1);
-      localStorage.setItem('cityListObject', JSON.stringify(RetrievedObject_cityList));
-      getWeatherHistory();
-    });
+  //   document.getElementById('removeButt'+i).addEventListener('click', function(){
+  //     RetrievedObject_cityList.splice(i, 1);
+  //     localStorage.setItem('cityListObject', JSON.stringify(RetrievedObject_cityList));
+  //     getWeatherHistory();
+  //   });
     
-  }
-
-  clearHistory();
-   
+  // }
 
 }
-
+//clearHistory();
  
 }
 
@@ -208,11 +218,6 @@ if(RetrievedObject_cityList !== null)
 
 function clearHistory(){
 
-  if(localStorage.getItem('cityListObject') === null||localStorage.getItem('cityListObject') === '[]')
-  {
-   
-    return;
-  }
   let clearButton = document.createElement('button');
   clearButton.textContent = 'Clear History';
   clearButton.setAttribute('class', 'btn btn-primary');
@@ -220,11 +225,9 @@ function clearHistory(){
   $(".list-group").append(document.createElement('br'));
   $(".list-group").append(clearButton);
 
-      clearButton.addEventListener('click', function(){
-      cityList.pop();
-      $(".list-group").empty();
-      localStorage.removeItem('cityListObject');
-      
+    clearButton.addEventListener('click', function(){
+    localStorage.removeItem('cityListObject');
+    $(".list-group").empty();
   });
 
 
@@ -238,14 +241,8 @@ function init ()
   getWeatherHistory();
   searchBtn.addEventListener("click", handleSearchBtnClick);
 
-
-
   
 }
 
 
 init();
-
-
-
-
