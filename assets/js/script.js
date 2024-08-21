@@ -165,7 +165,8 @@ if(RetrievedObject_cityList !== null)
     button.setAttribute('class', 'btn btn-primary');
     button.setAttribute('id', 'butt'+i);
     // set the width of the button to 100% if the screen width is less than 768px else set it to 50%
-    button.setAttribute('style', window.innerWidth < 768 ? 'width: 50%' : 'width: 100%'); 
+    button.setAttribute('style', window.innerWidth < 768 ? 'width: 25%' : 'width: 50%'); 
+    button.setAttribute('style', 'text-wrap: normal');
     removeCity.setAttribute('class', 'btn btn-danger');
     removeCity.setAttribute('id', 'removeButt'+i);
     removeCity.setAttribute('style', 'margin-left: 10px');
