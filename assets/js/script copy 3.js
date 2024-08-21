@@ -1,6 +1,5 @@
 
 let currentDate = dayjs().format("MMM-DD-YYYY");
-var timeDisplayEl = $("#time-display");
 const WEATHER_API_KEY = "313e19582894eb8e201b929fa986e291";
 const GEOTOMTOM_API_KEY = "fEpXmh3qP1JYzUnM3EIZjqSnqkCkvAPk";
 var redirectUrl = './404.html';
@@ -11,17 +10,7 @@ let clearBtn = document.querySelector(".clear-btn");
 let cityList = [];
 let butt_arr = [];
 
-
-
-
-
-
-
-function displayTimeDashBoard() {
-  var rightNow = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
-  timeDisplayEl.text(rightNow);
-  setInterval(displayTimeDashBoard, 1000);
-}
+//http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
 
 async function GETGEOLocation (locationName){
@@ -164,30 +153,32 @@ async function getWeatherHistory()
 {
   $(".list-group").empty();
 let RetrievedObject_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
-if(RetrievedObject_cityList !== null)
+if(RetrievedObject_cityList === null)
 {
+  return;
+}
   for(let i =0; i<RetrievedObject_cityList.length; i++)
   {
-    console.log(RetrievedObject_cityList[i].locationName);
+   // console.log(RetrievedObject_cityList[i].locationName+' '+i);
     let listCity = document.createElement('li');
     let button = document.createElement('button');
     let removeCity = document.createElement('button');
     button.textContent = RetrievedObject_cityList[i].locationName; 
-    removeCity.textContent = '❌';   
+    removeCity.textContent = '❌';  
     button.setAttribute('class', 'btn btn-primary');
     button.setAttribute('id', 'butt'+i);
-    button.setAttribute('style', window.innerWidth < 768 ? 'width: 100%' : 'width: 50%'); 
     removeCity.setAttribute('class', 'btn btn-danger');
     removeCity.setAttribute('id', 'removeButt'+i);
-    removeCity.setAttribute('style', 'margin-left: 10px');
     $(".list-group").append(document.createElement('br')); 
     $(".list-group").append(listCity);  
     listCity.appendChild(button);
-    listCity.appendChild(removeCity);
+    button.appendChild(removeCity);
+    
+    
  
-  }
+  
     await displayWeatherHistory();
-    await removeWeatherHistory();
+  //  await removeWeatherHistory();
 }
  
 }
@@ -197,13 +188,7 @@ async function removeWeatherHistory(){
   let RemoveSpecificItem = await JSON.parse(localStorage.getItem('cityListObject'));
   for(let i =0; i<RemoveSpecificItem.length; i++)
   {
-    if(document.getElementById('removeButt'+i) === null||document.getElementById('removeButt'+i) === undefined)
-    {
-      alert('removeButt'+i+' is null');
-      return;
-    }
-    
-    document.getElementById('removeButt'+i).addEventListener('click', async function(){
+      document.getElementById('removeButt'+i).addEventListener('click', async function(){
       if(RemoveSpecificItem.length === 1)
       {
         localStorage.clear("cityListObject");
@@ -218,7 +203,7 @@ async function removeWeatherHistory(){
     RemoveSpecificItem.splice(i, 1);
     localStorage.setItem('cityListObject', JSON.stringify(RemoveSpecificItem)); // update the local storage
     await getWeatherHistory();
-    
+
     // cityList.splice(i, i+1);
     // butt_arr.splice(i, i+1);
     // RemoveSpecificItem.splice(i, i+1);
@@ -248,11 +233,6 @@ else{
 }
 
 
-//  const getUserCoordinates = async function () {
-  
-// };
-
-
 
 
 
@@ -265,18 +245,14 @@ else{
 
 async function init ()
 {
-  displayTimeDashBoard();
   await getWeatherHistory();
-  await getUserCoordinates();
 }
 
 
 
  init();
-
+ //searchBtn.addEventListener("click", await handleSearchBtnClick);
   searchBtn.addEventListener("click", handleSearchBtnClick);
-
-
 
 
  clearBtn.addEventListener("click", function(){
@@ -292,40 +268,6 @@ async function init ()
   console.log(butt_arr);
   alert('All history has been cleared');
 
- });
-
-
-
- $(".location-btn").on("click", async function(){
-
-  await navigator.geolocation.getCurrentPosition(
-    (UserPosition) => {
-      const { latitude, longitude } = UserPosition.coords; // Get coordinates of user location
-      // Get city name from coordinates using reverse geocoding API
-      const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
-      fetch(API_URL)
-        .then((response) => response.json())
-        .then((data) => {
-          
-          const cityName = data.name;
-          alert('Your current location is being displayed in '+ cityName);
-          displayWeather(cityName);
-        })
-        .catch(() => {
-          alert("An error occurred while fetching the city name!");
-        });
-    },
-    (error) => {
-      // Show alert if user denied the location permission
-      if (error.code === error.PERMISSION_DENIED) {
-        alert(
-          "Geolocation request denied. Please reset location permission to grant access again."
-        );
-      } else {
-        alert("Geolocation request error. Please reset location permission.");
-      }
-    }
-  );
  });
 
 
