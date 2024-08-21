@@ -29,7 +29,6 @@ async function GETGEOLocation (locationName){
     var ObjectLocation={};
 var GeolocationName = locationName.trim().replaceAll(/\s+/g, '&');
 var locationTOMTOM =`https://api.tomtom.com/search/2/geocode/${GeolocationName}.json?key=${GEOTOMTOM_API_KEY}&limit=1`
-//var locationTOMTOM =`http://api.openweathermap.org/geo/1.0/direct?q=${GeolocationName}&limit=5&appid=${WEATHER_API_KEY}`
 
 console.log(locationTOMTOM);
 const response = await fetch(locationTOMTOM);
@@ -61,16 +60,6 @@ if(!butt_arr.includes(ObjectLocation.locationName))
 
 console.log(cityList);
 localStorage.setItem('cityListObject', JSON.stringify(cityList));
-// cityList.forEach((city) => {
-//   city.pop();
-// }
-// );
-
-
-
-
-
-
 
 return ObjectLocation;
 
@@ -145,7 +134,6 @@ $(".weather-data").css("background-size", "100%");
 $(".weather-data").css("background-repeat", "no-repeat");
 $(".weather-data").css("background-position", "right");
 
-//await getWeatherHistory();
 
 }
 
@@ -176,7 +164,8 @@ if(RetrievedObject_cityList !== null)
     removeCity.textContent = '❌';   
     button.setAttribute('class', 'btn btn-primary');
     button.setAttribute('id', 'butt'+i);
-    button.setAttribute('style', window.innerWidth < 768 ? 'width: 100%' : 'width: 50%'); 
+    // set the width of the button to 100% if the screen width is less than 768px else set it to 50%
+    button.setAttribute('style', window.innerWidth < 768 ? 'width: 50%' : 'width: 100%'); 
     removeCity.setAttribute('class', 'btn btn-danger');
     removeCity.setAttribute('id', 'removeButt'+i);
     removeCity.setAttribute('style', 'margin-left: 10px');
@@ -218,14 +207,8 @@ async function removeWeatherHistory(){
     RemoveSpecificItem.splice(i, 1);
     localStorage.setItem('cityListObject', JSON.stringify(RemoveSpecificItem)); // update the local storage
     await getWeatherHistory();
-    
-    // cityList.splice(i, i+1);
-    // butt_arr.splice(i, i+1);
-    // RemoveSpecificItem.splice(i, i+1);
-    // localStorage.setItem('cityListObject', JSON.stringify(cityList)); // update the local storage
-    // console.log(RemoveSpecificItem);
-    // await getWeatherHistory();
     });
+
   }
 }
 
@@ -246,20 +229,6 @@ else{
 }
 }
 }
-
-
-//  const getUserCoordinates = async function () {
-  
-// };
-
-
-
-
-
-
-
-
-
 
 
 
