@@ -189,13 +189,11 @@ a {
    
   }
   .weather-data{
-    width: 100%;
-
-
-
-
-    
-    
-  
+    width: 100%; 
   }
+
+  .list-group li{
+    display: flex;
+  }
+  
 }
