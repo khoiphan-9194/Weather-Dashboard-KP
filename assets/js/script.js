@@ -128,11 +128,7 @@ async function displayWeather(placeName){
   }
 
 $(".weather-icon h3").text(displayWeatherObject.weather);
-$(".weather-data").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
-//$(".weather-data").css("background-size", "75% auto");
-$(".weather-data").css("background-size", "100%");
-$(".weather-data").css("background-repeat", "no-repeat");
-$(".weather-data").css("background-position", "right");
+$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
 
 
 }

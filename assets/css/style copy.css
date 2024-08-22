@@ -70,15 +70,12 @@ header {
   align-items: center;
   justify-content: center;
   color: whitesmoke;
-  position: relative;
-  margin-bottom: 700px;
-
   
 
 }
 .weather-data{
 
-  width: 75%;
+  width: 70%;
   height: auto;
 
 border-radius: 40px;
@@ -88,29 +85,10 @@ color: whitesmoke;
 display: flex;
 flex-direction: column;
 
-
-}
-
-
-.current-weather{
-  /* background-image: url('/assets/img/50n.webp'); */
-  background-size:90% 100%;
-  background-repeat: no-repeat;
-  background-position: top 5px right 50px;
-
-  border-bottom: 3px solid #f0ebeb;
-  border-bottom-right-radius: 40px;
-  border-bottom-left-radius: 40px;
   
 
-
   
-
-
 }
-
-
-
 
 .weather-detail{
   display: flex;
@@ -197,7 +175,7 @@ a {
 .forecast h2{
   font-size: 30px;
   font-weight: bolder;
-  margin: 30px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -208,30 +186,33 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   padding: 30px;
- 
+
+  /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%); */
+  
   box-shadow: 0 0 15px 10px #b5c80c;
   color: whitesmoke;
   font-size: 20px;
   font-weight: bolder;
   width: 100%;
   height: auto;
-  margin-block-end: 30px;
 }
 
 .forecast-card
 {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin: 25px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 100px;
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
-  border-radius: 10px;
+  border-radius: 100px;
   box-shadow: 0 0 15px 10px #097175;
   color: whitesmoke;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bolder;
   width: 30%;
   height: 320px;
@@ -265,44 +246,18 @@ a {
     display: flex;
     flex-direction: column;
     text-shadow: #000 3px 3px 3px;
-    font-size: 10px;
-    width: 35%;
-    border-radius: 10px;
-    position: relative;
-    right: 45px;
+    font-size: 15px;
+   width: 30%;
+
+  
+  
    
+  }
+  .weather-data{
+    width: 100%; 
   }
 
   .list-group li{
     display: flex;
-  }
-
-  .forecast-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap ;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    color: whitesmoke;
-    font-size: 15px;
-    font-weight: bolder;
-    width: 100%;
-    height: auto;
-    margin-block-end: 20px;
-  }
-  .forecast-card{
-    width: 100%;
-  }
-
-  .current-weather{
-    background-size:cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-  }
-
-  footer{
-    display: none;
   }
 }
