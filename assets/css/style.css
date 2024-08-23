@@ -11,7 +11,9 @@ body {
   background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60');
   display: flex;
   flex-direction: column;
+  
   align-items: center;
+  
   
 }
 
@@ -46,9 +48,10 @@ header {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content:space-between;
-  width: 100%;
- 
+  justify-content: center;
+  width: auto;
+  height: fit-content;
+
 
 
   
@@ -62,15 +65,16 @@ header {
   width: auto;
   height: auto;
   padding: 50px;
-  margin-right: 30px;
-  border-radius: 50px;
+  margin-right: 10px;
+
   box-shadow: 0 0 15px 10px #3f3a3a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: whitesmoke;
-  margin-bottom: 600px;
+  margin-bottom: 300px;
+ 
   
 
   
@@ -87,6 +91,7 @@ box-shadow: 0 0 15px 10px #f0ebeb;
 color: whitesmoke;
 display: flex;
 flex-direction: column;
+
 
 
 }
@@ -244,8 +249,16 @@ a {
 
 
 @media screen and (max-width: 500px) {
+  header{
+    height: fit-content;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
   header h1 {
-    font-size: 30px;
+    font-size: 20px;
   }
 
   header h5 {
@@ -253,13 +266,105 @@ a {
   }
 
   .main-layout {
-    flex-direction:column-reverse
+    flex-direction:column;
     
   }
 
+
+
   .weather-search {
-    margin: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
   }
+
+ .cityHist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;;
+    height: fit-content;
+    position: relative;
+    bottom: 35px  ;
+  }
+  
+    .weather-data {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background-color: #000;
+      box-shadow: none;
+      color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+    }
+  
+.btn-primary,
+.btn-danger
+ {
+  font-size: 10px;
+  height: fit-content ;
+;
+}
+    .weather-detail {
+   
+    
+      border-radius: 10px;
+      box-shadow: 0 0 15px 10px #141414;
+      color: whitesmoke;
+      font-size: 15px;
+      text-align: center;
+      font-weight: bolder;
+      width: 100%;
+      height: auto;
+    }
+  
+    .weather-input {
+      margin: 10px 0;
+ }
+
+
+
+button{
+font-size: 12px;
+}
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  header h5 {
+    font-size: 15px;
+  }
+
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .weather-search {
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 30px;
+    display: flex;
+    width: 70%;
+  }
+
+  .weather-data {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background-color: #000;
+    box-shadow: none;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+}
 
   .weather-detail {
     display: flex;
@@ -279,20 +384,26 @@ a {
 
   .forecast-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap ;
     justify-content: center;
-    align-items: center;
-    padding: 5px;
-    color: whitesmoke;
-    font-size: 15px;
-    font-weight: bolder;
-    width: 100%;
-    height: auto;
-    margin-block-end: 20px;
+    align-items: center;;
+  
   }
   .forecast-card{
-    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    padding: 0;
+
+  
+  }
+
+   .card-img{
+    height: 50px;
+    width: 50px;
+   
   }
 
   .current-weather{
@@ -302,7 +413,75 @@ a {
 
   }
 
-  footer{
-    display: none;
+}
+
+
+@keyframes move {
+  from {
+    transform: translate(500%);
+  }
+  to {
+    transform: translate(-500%);
   }
 }
+
+@keyframes drop-in {
+  from {
+    transform: rotate(-30deg) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    color: rgb(237, 66, 4);
+  }
+  15% {
+    color: rgb(19, 163, 199);
+  }
+  25% {
+    color: rgb(178, 11, 193);
+  }
+  45% {
+    color: yellow;
+  }
+  75% {
+    color: whitesmoke;
+  }
+  100% {
+    color: rgb(32, 10, 202);
+  }
+}
+.rainbow_Animation {
+  animation: rainbow ;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+}
+.heading {
+  
+  
+  animation-iteration-count: infinite;
+  animation: drop-in 5000ms;
+}
+
+
+
+.lead {
+  animation: move 22s infinite linear; /* set the time to what you want of course */
+  font-size: 25px;
+}
+
+
+
+
+ .card-body:hover {
+  font-size: 20px;
+  transition: all 0.8s ease-in-out;
+}
+

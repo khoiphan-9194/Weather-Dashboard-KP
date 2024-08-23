@@ -79,13 +79,85 @@ return ObjectLocation;
 // })();
 
 
+
+async function getFivedayForecast(latitude, longitude){
+
+  const FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
+
+  console.log(FORECAST_URL);
+  const response = await fetch(FORECAST_URL);
+  if(response.status !== 200)
+  {
+    document.location.href = redirectUrl;
+  } 
+
+  const forecastData = await response.json();
+  console.log(forecastData);
+
+  console.log(typeof (forecastData.list[0].dt_txt));
+  console.log(forecastData.list[0].dt_txt.split(' ')[0]);
+  console.log(currentDate);
+  const fiveDayArray = [];
+  const fiveDayForcastObject = [];
+  for(let i =0; i<forecastData.list.length; i++)
+  {
+    if(!fiveDayArray.includes(forecastData.list[i].dt_txt.split(' ')[0]))
+    {
+      fiveDayArray.push(forecastData.list[i].dt_txt.split(' ')[0]);
+      fiveDayForcastObject.push(forecastData.list[i]);
+    }
+
+
+  }
+
+  console.log(fiveDayForcastObject);
+  
+  $(".forecast-container").empty();
+  for(let i =0; i<fiveDayForcastObject.length; i++)
+  {
+    const tempF = Math.round((fiveDayForcastObject[i].main.temp - 273.15) * 9/5 + 32);
+    const forecastCard = document.createElement('div');
+    forecastCard.setAttribute('class', 'card forecast-card');
+    forecastCard.setAttribute('style', 'width: 18rem');
+
+    const forecastCardBody = document.createElement('div');
+    forecastCardBody.setAttribute('class', 'card-body');
+
+    const forecastCardDate = document.createElement('h5');
+    forecastCardDate.setAttribute('class', 'card-title');
+
+    forecastCardDate.textContent = fiveDayForcastObject[i].dt_txt.split(' ')[0]; // get the date from the dt_txt
+
+    const forecastCardText = document.createElement('p');
+    forecastCardText.setAttribute('class', 'card-text');
+    forecastCardText.textContent = `Temp: ${tempF}°F`; // get the temperature from the main object
+
+    const forecastCardIMG = document.createElement('img');
+    forecastCardIMG.setAttribute('class', 'card-img');
+    forecastCardIMG.setAttribute('src', `https://openweathermap.org/img/w/${fiveDayForcastObject[i].weather[0].icon}.png`); // get the icon from the weather object
+    const forecastCardDesciption = document.createElement('p');
+    forecastCardDesciption.setAttribute('class', 'card-desciption');
+    forecastCardDesciption.textContent = `${fiveDayForcastObject[i].weather[0].description}`; // get the description from the weather object;
+   
+    forecastCardBody.appendChild(forecastCardDate);
+    forecastCardBody.appendChild(forecastCardText);
+    forecastCardBody.appendChild(forecastCardIMG);
+    forecastCardBody.appendChild(forecastCardDesciption);
+    forecastCard.appendChild(forecastCardBody);
+    $(".forecast-container").append(forecastCard);
+  }
+
+}
+
+
  async function GETWEATHER(obJectLocation){
   try{
   const ObjectWeather = {};
   const  weatherLocation = await obJectLocation;
   console.log(weatherLocation);
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${weatherLocation.lat}&lon=${weatherLocation.lon}&appid=${WEATHER_API_KEY}`;
-  console.log(WEATHER_URL);
+  //console.log(WEATHER_URL);
+  await getFivedayForecast(weatherLocation.lat, weatherLocation.lon); // get the five day forecast
   const response = await fetch(WEATHER_URL);
   if(response.status !==200)
   {
@@ -229,23 +301,23 @@ else{
 
 
 
+
+
+
+
+
 async function init ()
 {
   displayTimeDashBoard();
   await getWeatherHistory();
-  await getUserCoordinates();
 }
 
 
 
  init();
 
-  searchBtn.addEventListener("click", handleSearchBtnClick);
-
-
-
-
- clearBtn.addEventListener("click", function(){
+searchBtn.addEventListener("click", handleSearchBtnClick);
+clearBtn.addEventListener("click", function(){
   if(localStorage.getItem("cityListObject") === null )
   {
     return alert('No history to clear');
@@ -259,7 +331,6 @@ async function init ()
   alert('All history has been cleared');
 
  });
-
 
 
  $(".location-btn").on("click", async function(){
