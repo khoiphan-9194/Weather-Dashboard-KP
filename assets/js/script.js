@@ -309,7 +309,7 @@ else{
 async function init ()
 {
   displayTimeDashBoard();
-  await getWeatherHistory();
+  //await getWeatherHistory();
 }
 
 
