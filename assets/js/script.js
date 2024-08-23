@@ -309,14 +309,14 @@ else{
 async function init ()
 {
   displayTimeDashBoard();
-  //await getWeatherHistory();
+  await getWeatherHistory();
 }
 
 
 
- init();
+ //init();
 
-searchBtn.addEventListener("click", handleSearchBtnClick);
+//searchBtn.addEventListener("click", handleSearchBtnClick);
 clearBtn.addEventListener("click", function(){
   if(localStorage.getItem("cityListObject") === null )
   {
