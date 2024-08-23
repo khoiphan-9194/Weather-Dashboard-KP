@@ -200,7 +200,7 @@ async function displayWeather(placeName){
   }
 
 $(".weather-icon h3").text(displayWeatherObject.weather);
-$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
+//$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
 
 
 }
