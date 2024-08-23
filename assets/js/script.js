@@ -314,9 +314,9 @@ async function init ()
 
 
 
- //init();
+ init();
 
-//searchBtn.addEventListener("click", handleSearchBtnClick);
+searchBtn.addEventListener("click", handleSearchBtnClick);
 clearBtn.addEventListener("click", function(){
   if(localStorage.getItem("cityListObject") === null )
   {
