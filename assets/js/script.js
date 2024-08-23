@@ -30,7 +30,7 @@ async function GETGEOLocation (locationName){
 var GeolocationName = locationName.trim().replaceAll(/\s+/g, '&');
 var locationTOMTOM =`https://api.tomtom.com/search/2/geocode/${GeolocationName}.json?key=${GEOTOMTOM_API_KEY}&limit=1`
 
-console.log(locationTOMTOM);
+//console.log(locationTOMTOM);
 const response = await fetch(locationTOMTOM);
 if (response.status !== 200) {
 
@@ -38,7 +38,7 @@ if (response.status !== 200) {
   
 }
 const locationData = await response.json();
-console.log(locationData);
+//console.log(locationData);
   // if(confirm(`Did you mean ${locationData.results[0].address.freeformAddress.split(', ')[0]}, ${locationData.results[0].address.countrySubdivision} 
   //   ${locationData.results[0].address.country} ?`) == false) // if the user click cancel, then alert the user to re-check the input
   // {
@@ -58,7 +58,7 @@ if(!butt_arr.includes(ObjectLocation.locationName))
  
 }
 
-console.log(cityList);
+//console.log(cityList);
 localStorage.setItem('cityListObject', JSON.stringify(cityList));
 
 return ObjectLocation;
@@ -84,7 +84,7 @@ async function getFivedayForecast(latitude, longitude){
 
   const FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
 
-  console.log(FORECAST_URL);
+  //console.log(FORECAST_URL);
   const response = await fetch(FORECAST_URL);
   if(response.status !== 200)
   {
@@ -92,11 +92,11 @@ async function getFivedayForecast(latitude, longitude){
   } 
 
   const forecastData = await response.json();
-  console.log(forecastData);
+  //console.log(forecastData);
 
-  console.log(typeof (forecastData.list[0].dt_txt));
-  console.log(forecastData.list[0].dt_txt.split(' ')[0]);
-  console.log(currentDate);
+  //console.log(typeof (forecastData.list[0].dt_txt));
+  //console.log(forecastData.list[0].dt_txt.split(' ')[0]);
+  //console.log(currentDate);
   const fiveDayArray = [];
   const fiveDayForcastObject = [];
   for(let i =0; i<forecastData.list.length; i++)
@@ -110,7 +110,7 @@ async function getFivedayForecast(latitude, longitude){
 
   }
 
-  console.log(fiveDayForcastObject);
+  //console.log(fiveDayForcastObject);
   
   $(".forecast-container").empty();
   for(let i =0; i<fiveDayForcastObject.length; i++)
@@ -154,7 +154,7 @@ async function getFivedayForecast(latitude, longitude){
   try{
   const ObjectWeather = {};
   const  weatherLocation = await obJectLocation;
-  console.log(weatherLocation);
+  //console.log(weatherLocation);
   const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${weatherLocation.lat}&lon=${weatherLocation.lon}&appid=${WEATHER_API_KEY}`;
   //console.log(WEATHER_URL);
   await getFivedayForecast(weatherLocation.lat, weatherLocation.lon); // get the five day forecast
@@ -164,7 +164,7 @@ async function getFivedayForecast(latitude, longitude){
     document.location.href = redirectUrl
   }
   const weatherData = await response.json();
-  console.log(weatherData);
+  //console.log(weatherData);
   ObjectWeather.weather = weatherData.weather[0].description;
   ObjectWeather.temp = weatherData.main.temp;
   ObjectWeather.humidity = weatherData.main.humidity;
@@ -186,9 +186,9 @@ async function getFivedayForecast(latitude, longitude){
 async function displayWeather(placeName){
  
   const displayWeatherObject = await GETWEATHER(GETGEOLocation(placeName));
-  console.log(displayWeatherObject);
+  //console.log(displayWeatherObject);
   const tempF = Math.round((displayWeatherObject.temp - 273.15) * 9/5 + 32);
-  console.log(tempF);
+  //console.log(tempF);
   const arrayWeatherDisPlay = [displayWeatherObject.locationName, `Temp: ${tempF}°F`, 
                               `Wind: ${displayWeatherObject.wind_speed} MPH`, 
                               `Humidity: ${displayWeatherObject.humidity}%`,
@@ -200,7 +200,7 @@ async function displayWeather(placeName){
   }
 
 $(".weather-icon h3").text(displayWeatherObject.weather);
-//$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
+$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
 
 
 }
@@ -224,7 +224,7 @@ if(RetrievedObject_cityList !== null)
 {
   for(let i =0; i<RetrievedObject_cityList.length; i++)
   {
-    console.log(RetrievedObject_cityList[i].locationName);
+    //console.log(RetrievedObject_cityList[i].locationName);
     let listCity = document.createElement('li');
     let button = document.createElement('button');
     let removeCity = document.createElement('button');
@@ -268,8 +268,8 @@ async function removeWeatherHistory(){
         $(".list-group").empty();
         cityList = [];
         butt_arr = [];
-        console.log(cityList);
-        console.log(butt_arr);
+        //console.log(cityList);
+        //console.log(butt_arr);
         alert('All history has been cleared');
         return;
       }
@@ -285,7 +285,7 @@ async function displayWeatherHistory(){
   let Display_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
   for(let i =0; i<Display_cityList.length; i++)
   {
-    console.log(Display_cityList[i].locationName);
+    //console.log(Display_cityList[i].locationName);
     if(document.getElementById('butt'+i) !== null)
     {
     document.getElementById('butt'+i).addEventListener('click', async function(){
@@ -326,8 +326,8 @@ clearBtn.addEventListener("click", function(){
   $(".list-group").empty();
   cityList = [];
   butt_arr = [];
-  console.log(cityList);
-  console.log(butt_arr);
+  //console.log(cityList);
+  //console.log(butt_arr);
   alert('All history has been cleared');
 
  });
