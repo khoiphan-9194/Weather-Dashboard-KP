@@ -350,9 +350,10 @@ font-size: 12px;
     padding: 0;
     border-radius: 0;
     box-shadow: none;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     display: flex;
-    width: 70%;
+    flex-direction: column;
+    width: fit-content;
   }
 
   .weather-data {
@@ -411,6 +412,11 @@ font-size: 12px;
     background-position: center;
     background-repeat: no-repeat;
 
+  }
+
+  body{
+   height: auto;
+   
   }
 
 }
