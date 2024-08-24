@@ -4,31 +4,30 @@
   padding: 0;
 
 }
+
 body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   line-height: 1.5;
   background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60');
-  
+
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
-  
-  
+
+
 }
 
 header {
-  background-image: linear-gradient(
-    to right,
-    rgba(17, 70, 135, 0.221),
-    rgb(62, 20, 201)
-  );
+  background-image: linear-gradient(to right,
+      rgba(17, 70, 135, 0.221),
+      rgb(62, 20, 201));
   color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 
 
   height: auto;
@@ -55,18 +54,18 @@ header {
 
 
 
-  
 
-  
+
+
 }
 
-.weather-search{
+.weather-search {
 
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgb(45, 53, 54) 100%);
   width: auto;
   height: auto;
   padding: 50px;
-  margin-right: 10px;
+  margin-right: 50px;
 
   box-shadow: 0 0 15px 10px #3f3a3a;
   display: flex;
@@ -75,50 +74,44 @@ header {
   justify-content: center;
   color: whitesmoke;
   margin-bottom: 300px;
- 
-  
 
-  
+
+
+
 
 }
-.weather-data{
+
+.weather-data {
 
   width: 75%;
   height: auto;
 
-border-radius: 40px;
-background-color: #000;
-box-shadow: 0 0 15px 10px #f0ebeb;
-color: whitesmoke;
-display: flex;
-flex-direction: column;
+  border-radius: 40px;
+  background-color: #000;
+  box-shadow: 0 0 15px 10px #f0ebeb;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
 
 
 
 }
 
 
-.current-weather{
+.current-weather {
   /* background-image: url('/assets/img/50n.webp'); */
-  background-size:90% 100%;
+  background-size: 90% 100%;
   background-repeat: no-repeat;
   background-position: top 5px right 50px;
-
   border-bottom: 3px solid #f0ebeb;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
-  
-
-
-  
-
-
 }
 
 
 
 
-.weather-detail{
+.weather-detail {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +119,7 @@ flex-direction: column;
   margin: 80px;
   padding: 10px;
   border-radius: 100px;
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgb(45, 53, 54) 100%);
   border-radius: 100px;
   box-shadow: 0 0 15px 10px #097175;
   color: whitesmoke;
@@ -134,20 +127,18 @@ flex-direction: column;
   font-weight: bolder;
   width: 30%;
   height: 320px;
- 
-
 }
 
-.weather-input{
+.weather-input {
 
 
   margin: 10px 0px;
- 
+
 }
 
-.city-input{
+.city-input {
   width: fit-content;
-  
+
   border-radius: 5px;
   border: 1px solid #000;
 }
@@ -178,8 +169,8 @@ header h5 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   text-align: center;
- 
-  color:rgb(215, 229, 215);
+
+  color: rgb(215, 229, 215);
   text-shadow: #000 3px 3px 3px;
 
 }
@@ -189,18 +180,18 @@ a {
   font-size: 40px;
 }
 
-.forecast{
+.forecast {
   display: flex;
   flex-direction: column;
 
 
-  
+
 
 
 
 }
 
-.forecast h2{
+.forecast h2 {
   font-size: 30px;
   font-weight: bolder;
   margin: 30px;
@@ -208,14 +199,13 @@ a {
 }
 
 
-.forecast-container
-{
+.forecast-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 30px;
- 
+
   box-shadow: 0 0 15px 10px #b5c80c;
   color: whitesmoke;
   font-size: 20px;
@@ -225,15 +215,14 @@ a {
   margin-block-end: 30px;
 }
 
-.forecast-card
-{
+.forecast-card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: 25px;
   padding: 10px;
   border-radius: 20px;
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(45, 53, 54) 100%);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgb(45, 53, 54) 100%);
   border-radius: 10px;
   box-shadow: 0 0 15px 10px #097175;
   color: whitesmoke;
@@ -250,7 +239,7 @@ a {
 
 
 @media screen and (max-width: 500px) {
-  header{
+  header {
     height: fit-content;
     width: 100%;
     border-radius: 0;
@@ -258,6 +247,7 @@ a {
     margin: 0;
     padding: 0;
   }
+
   header h1 {
     font-size: 20px;
   }
@@ -267,71 +257,72 @@ a {
   }
 
   .main-layout {
-    flex-direction:column;
-    
+    flex-direction: column;
+
   }
 
 
 
   .weather-search {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
   }
 
- .cityHist{
+  .cityHist {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;;
+    justify-content: center;
+    ;
     height: fit-content;
     position: relative;
-    bottom: 35px  ;
+    bottom: 35px;
   }
-  
-    .weather-data {
-      width: auto;
-      height: auto;
-      border-radius: 0;
-      background-color: #000;
-      box-shadow: none;
-      color: whitesmoke;
-      display: flex;
-      flex-direction: column;
-    }
-  
-.btn-primary,
-.btn-danger
- {
-  font-size: 10px;
-  height: fit-content ;
-;
-}
-    .weather-detail {
-   
-    
-      border-radius: 10px;
-      box-shadow: 0 0 15px 10px #141414;
-      color: whitesmoke;
-      font-size: 15px;
-      text-align: center;
-      font-weight: bolder;
-      width: 100%;
-      height: auto;
-    }
-  
-    .weather-input {
-      margin: 10px 0;
- }
+
+  .weather-data {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background-color: #000;
+    box-shadow: none;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-danger {
+    font-size: 10px;
+    height: fit-content;
+    ;
+  }
+
+  .weather-detail {
+
+
+    border-radius: 10px;
+    box-shadow: 0 0 15px 10px #141414;
+    color: whitesmoke;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bolder;
+    width: 100%;
+    height: auto;
+  }
+
+  .weather-input {
+    margin: 10px 0;
+  }
 
 
 
-button{
-font-size: 12px;
-}
+  button {
+    font-size: 12px;
+  }
 
   header h1 {
     font-size: 20px;
@@ -366,7 +357,7 @@ font-size: 12px;
     color: whitesmoke;
     display: flex;
     flex-direction: column;
-}
+  }
 
   .weather-detail {
     display: flex;
@@ -377,47 +368,49 @@ font-size: 12px;
     border-radius: 10px;
     position: relative;
     right: 45px;
-   
+
   }
 
-  .list-group li{
+  .list-group li {
     display: flex;
   }
 
-  .forecast-container{
+  .forecast-container {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;;
-  
+    align-items: center;
+    ;
+
   }
-  .forecast-card{
+
+  .forecast-card {
     height: fit-content;
     justify-content: center;
     align-items: center;
     font-size: 10px;
     padding: 0;
 
-  
+
   }
 
-   .card-img{
+  .card-img {
     height: 50px;
     width: 50px;
-   
+
   }
 
-  .current-weather{
-    background-size:cover;
+  .current-weather {
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
   }
 
-  body{
-   height: auto;
-   
+  body {
+    height: auto;
+
   }
 
 }
@@ -427,6 +420,7 @@ font-size: 12px;
   from {
     transform: translate(500%);
   }
+
   to {
     transform: translate(-500%);
   }
@@ -437,6 +431,7 @@ font-size: 12px;
     transform: rotate(-30deg) translateY(-100%);
     opacity: 0;
   }
+
   to {
     transform: rotate(0deg) translateY(0%);
     opacity: 1;
@@ -447,32 +442,39 @@ font-size: 12px;
   0% {
     color: rgb(237, 66, 4);
   }
+
   15% {
     color: rgb(19, 163, 199);
   }
+
   25% {
     color: rgb(178, 11, 193);
   }
+
   45% {
     color: yellow;
   }
+
   75% {
     color: whitesmoke;
   }
+
   100% {
     color: rgb(32, 10, 202);
   }
 }
+
 .rainbow_Animation {
-  animation: rainbow ;
+  animation: rainbow;
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 
 }
+
 .heading {
-  
-  
+
+
   animation-iteration-count: infinite;
   animation: drop-in 5000ms;
 }
@@ -480,15 +482,15 @@ font-size: 12px;
 
 
 .lead {
-  animation: move 22s infinite linear; /* set the time to what you want of course */
+  animation: move 22s infinite linear;
+  /* set the time to what you want of course */
   font-size: 25px;
 }
 
 
 
 
- .card-body:hover {
+.card-body:hover {
   font-size: 20px;
   transition: all 0.8s ease-in-out;
 }
-

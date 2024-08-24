@@ -208,8 +208,10 @@ $(".current-weather").css("background-image", `url(assets/img/${displayWeatherOb
 
 async function handleSearchBtnClick(event){
   event.preventDefault();
+
   await displayWeather(searchInput.value);
   await getWeatherHistory();
+  $(".weather-data").css("visibility", "visible");
   searchInput.value = "";
  
 
@@ -270,6 +272,7 @@ async function removeWeatherHistory(){
         butt_arr = [];
         //console.log(cityList);
         //console.log(butt_arr);
+        $(".weather-data").css("visibility", "hidden");
         alert('All history has been cleared');
         return;
       }
@@ -290,6 +293,7 @@ async function displayWeatherHistory(){
     {
     document.getElementById('butt'+i).addEventListener('click', async function(){
           await displayWeather(Display_cityList[i].locationName);
+          $(".weather-data").css("visibility", "visible");
  
   });
 }
@@ -317,6 +321,7 @@ async function init ()
  init();
 
 searchBtn.addEventListener("click", handleSearchBtnClick);
+
 clearBtn.addEventListener("click", function(){
   if(localStorage.getItem("cityListObject") === null )
   {
@@ -328,7 +333,9 @@ clearBtn.addEventListener("click", function(){
   butt_arr = [];
   //console.log(cityList);
   //console.log(butt_arr);
+  $(".weather-data").css("visibility", "hidden");
   alert('All history has been cleared');
+ 
 
  });
 
@@ -346,7 +353,9 @@ clearBtn.addEventListener("click", function(){
           
           const cityName = data.name;
           alert('Your current location is being displayed in '+ cityName);
+       
           displayWeather(cityName);
+          $(".weather-data").css("visibility", "visible");
         })
         .catch(() => {
           alert("An error occurred while fetching the city name!");
