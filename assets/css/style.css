@@ -131,20 +131,16 @@ header {
 
 .weather-input {
 
-
-  margin: 10px 0px;
+  margin: 0px 0px;
 
 }
 
 .city-input {
   width: fit-content;
-
   border-radius: 5px;
   border: 1px solid #000;
+  
 }
-
-
-
 
 
 header h1 {
@@ -156,12 +152,6 @@ header h1 {
 header h5 {
   font-size: 30px;
 }
-
-
-
-
-
-
 
 .footer {
   padding: 5px;
