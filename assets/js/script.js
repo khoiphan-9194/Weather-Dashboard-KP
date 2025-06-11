@@ -221,35 +221,39 @@ async function handleSearchBtnClick(event){
 async function getWeatherHistory()
 {
   $(".list-group").empty();
-let RetrievedObject_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
-if(RetrievedObject_cityList !== null)
-{
-  for(let i =0; i<RetrievedObject_cityList.length; i++)
-  {
-    //console.log(RetrievedObject_cityList[i].locationName);
-    let listCity = document.createElement('li');
-    let button = document.createElement('button');
-    let removeCity = document.createElement('button');
-    button.textContent = RetrievedObject_cityList[i].locationName; 
-    removeCity.textContent = '❌';   
-    button.setAttribute('class', 'btn btn-primary');
-    button.setAttribute('id', 'butt'+i);
-    // set the width of the button to 100% if the screen width is less than 768px else set it to 50%
-    button.setAttribute('style', window.innerWidth < 768 ? 'width: 25%' : 'width: 50%'); 
-    button.setAttribute('style', 'word-wrap: break-word');
-    removeCity.setAttribute('class', 'btn btn-danger');
-    removeCity.setAttribute('id', 'removeButt'+i);
-    removeCity.setAttribute('style', 'margin-left: 10px');
-    $(".list-group").append(document.createElement('br')); 
-    $(".list-group").append(listCity);  
-    listCity.appendChild(button);
-    listCity.appendChild(removeCity);
- 
-  }
+  let RetrievedObject_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
+  if (RetrievedObject_cityList !== null) {
+    for (let i = 0; i < RetrievedObject_cityList.length; i++) {
+      let listCity = document.createElement('li');
+      listCity.setAttribute('class', 'list-group-item d-flex align-items-center justify-content-between');
+      listCity.setAttribute('style', 'padding: 0.5rem 1rem; border: none; background: transparent;');
+
+      let buttonGroup = document.createElement('div');
+      buttonGroup.setAttribute('class', 'd-flex align-items-center w-100');
+
+      // Both buttons get flex-grow-1 so they expand equally
+      let button = document.createElement('button');
+      button.textContent = RetrievedObject_cityList[i].locationName;
+      button.setAttribute('class', 'btn btn-primary flex-grow-1 text-start');
+      button.setAttribute('id', 'butt' + i);
+      button.setAttribute('style', 'min-width: 0; margin-right: 10px; white-space: normal; word-break: break-word;');
+
+      let removeCity = document.createElement('button');
+      removeCity.textContent = '❌';
+      removeCity.setAttribute('class', 'btn btn-danger flex-grow-1');
+      removeCity.setAttribute('id', 'removeButt' + i);
+      removeCity.setAttribute('style', 'min-width: 0; margin-left: 0; font-size: 1.2rem;');
+
+      buttonGroup.appendChild(button);
+      buttonGroup.appendChild(removeCity);
+
+      listCity.appendChild(buttonGroup);
+
+      $(".list-group").append(listCity);
+    }
     await displayWeatherHistory();
     await removeWeatherHistory();
-}
- 
+  }
 }
 
 
