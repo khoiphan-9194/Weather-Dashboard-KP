@@ -220,8 +220,15 @@ async function handleSearchBtnClick(event){
 
 async function getWeatherHistory()
 {
-  $(".list-group").empty();
+  $(".list-group").empty();//
   let RetrievedObject_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
+  // Synchronize in-memory arrays with localStorage
+  // the code below will check if the localStorage is empty or not, if it is empty then it will create an empty array
+  // otherwise it will retrieve the array from localStorage
+  // this is to ensure that the cityList and butt_arr are always in sync with the localStorage
+  cityList = RetrievedObject_cityList ? [...RetrievedObject_cityList] : []; 
+  butt_arr = cityList.map(city => city.locationName);
+  
   if (RetrievedObject_cityList !== null) {
     for (let i = 0; i < RetrievedObject_cityList.length; i++) {
       let listCity = document.createElement('li');
@@ -229,9 +236,8 @@ async function getWeatherHistory()
       listCity.setAttribute('style', 'padding: 0.5rem 1rem; border: none; background: transparent;');
 
       let buttonGroup = document.createElement('div');
-      buttonGroup.setAttribute('class', 'd-flex align-items-center w-100');
+      buttonGroup.setAttribute('class', 'd-flex align-items-center flex-grow-1');
 
-      // Both buttons get flex-grow-1 so they expand equally
       let button = document.createElement('button');
       button.textContent = RetrievedObject_cityList[i].locationName;
       button.setAttribute('class', 'btn btn-primary flex-grow-1 text-start');
@@ -240,53 +246,57 @@ async function getWeatherHistory()
 
       let removeCity = document.createElement('button');
       removeCity.textContent = '❌';
-      removeCity.setAttribute('class', 'btn btn-danger flex-grow-1');
+      removeCity.setAttribute('class', 'btn btn-danger btn-sm');
       removeCity.setAttribute('id', 'removeButt' + i);
-      removeCity.setAttribute('style', 'min-width: 0; margin-left: 0; font-size: 1.2rem;');
+      removeCity.setAttribute('style', 'margin-left: 0;');
 
       buttonGroup.appendChild(button);
-      buttonGroup.appendChild(removeCity);
-
       listCity.appendChild(buttonGroup);
+      listCity.appendChild(removeCity);
 
       $(".list-group").append(listCity);
     }
+    // Add event listeners to the buttons
     await displayWeatherHistory();
     await removeWeatherHistory();
+    
+
+  
   }
 }
 
 
-async function removeWeatherHistory(){
+async function removeWeatherHistory() {
   let RemoveSpecificItem = await JSON.parse(localStorage.getItem('cityListObject'));
-  for(let i =0; i<RemoveSpecificItem.length; i++)
-  {
-    if(document.getElementById('removeButt'+i) === null||document.getElementById('removeButt'+i) === undefined)
-    {
-      alert('removeButt'+i+' is null');
-      return;
+  if (!RemoveSpecificItem || !Array.isArray(RemoveSpecificItem)) return;
+  for (let i = 0; i < RemoveSpecificItem.length; i++) {
+    const removeBtn = document.getElementById('removeButt' + i);
+    if (!removeBtn) {
+      // Skip if button not found, don't alert every time
+      continue;
     }
-    
-    document.getElementById('removeButt'+i).addEventListener('click', async function(){
-      if(RemoveSpecificItem.length === 1)
-      {
-        localStorage.clear("cityListObject");
+    // Remove previous event listeners to avoid stacking
+    removeBtn.replaceWith(removeBtn.cloneNode(true));
+    const newRemoveBtn = document.getElementById('removeButt' + i);
+    newRemoveBtn.addEventListener('click', async function () {
+      let updatedList = await JSON.parse(localStorage.getItem('cityListObject')) || [];
+      if (updatedList.length === 1) {
+        localStorage.removeItem("cityListObject");
         $(".list-group").empty();
         cityList = [];
         butt_arr = [];
-        //console.log(cityList);
-        //console.log(butt_arr);
         $(".weather-data").css("visibility", "hidden");
         alert('All history has been cleared');
         return;
       }
-    RemoveSpecificItem.splice(i, 1);
-    localStorage.setItem('cityListObject', JSON.stringify(RemoveSpecificItem)); // update the local storage
-    await getWeatherHistory();
+      updatedList.splice(i, 1);
+      localStorage.setItem('cityListObject', JSON.stringify(updatedList)); // update the local storage
+      await getWeatherHistory();
     });
-
   }
 }
+
+
 
 async function displayWeatherHistory(){
   let Display_cityList = await JSON.parse(localStorage.getItem('cityListObject'));
