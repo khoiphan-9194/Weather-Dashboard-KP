@@ -200,7 +200,15 @@ async function displayWeather(placeName){
   }
 
 $(".weather-icon h3").text(displayWeatherObject.weather);
-$(".current-weather").css("background-image", `url(assets/img/${displayWeatherObject.icon}.webp)`);
+// Set a visually appealing background image for the current weather section
+$(".current-weather").css({
+  "background-image": `url(assets/img/${displayWeatherObject.icon}.webp)`,
+  "background-size": "cover",
+  "background-position": "center",
+  "background-repeat": "no-repeat",
+  "border-radius": "1rem",
+  "min-height": "200px"
+});
 
 
 }
@@ -228,7 +236,7 @@ async function getWeatherHistory()
   // this is to ensure that the cityList and butt_arr are always in sync with the localStorage
   cityList = RetrievedObject_cityList ? [...RetrievedObject_cityList] : []; 
   butt_arr = cityList.map(city => city.locationName);
-  
+
   if (RetrievedObject_cityList !== null) {
     for (let i = 0; i < RetrievedObject_cityList.length; i++) {
       let listCity = document.createElement('li');
