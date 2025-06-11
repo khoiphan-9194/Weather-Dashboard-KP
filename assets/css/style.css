@@ -325,23 +325,66 @@ header h5 {
   transition: all 0.8s cubic-bezier(.68,-0.55,.27,1.55);
 }
 
-
 /* Responsive Styles */
-@media screen and (max-width: 900px) {
+
+/* For tablets (iPad, width ≤ 1024px) */
+@media screen and (max-width: 1024px) {
   .main-layout {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 28px;
   }
   .weather-data, .forecast-container {
-    width: 98%;
+    width: 96%;
   }
   .forecast-card {
-    width: 40%;
+    width: 32%;
     min-width: 120px;
   }
 }
 
+/* For small tablets and large phones (width ≤ 768px) */
+@media screen and (max-width: 768px) {
+  header {
+    width: 98%;
+    border-radius: 18px;
+    margin: 10px 0;
+    padding: 18px 0;
+  }
+  header h1 { font-size: 32px; }
+  header h5 { font-size: 18px; }
+  .main-layout {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .weather-search, .weather-data, .forecast-container {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 14px 6px;
+  }
+  .weather-detail {
+    font-size: 15px;
+    width: 95%;
+    min-width: unset;
+    border-radius: 10px;
+    margin: 10px auto;
+  }
+  .forecast-card {
+    width: 48%;
+    min-width: 100px;
+    font-size: 13px;
+    padding: 10px 4px;
+    border-radius: 10px;
+  }
+  .card-img, .forecast-card img, .current-weather img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+}
+
+/* For phones (iPhone, width ≤ 500px) */
 @media screen and (max-width: 500px) {
   header {
     width: 100%;
@@ -364,22 +407,22 @@ header h5 {
   }
   .weather-detail {
     font-size: 13px;
-    width: 90%;
+    width: 98%;
     min-width: unset;
-    border-radius: 10px;
-    margin: 12px auto;
+    border-radius: 8px;
+    margin: 8px auto;
   }
   .forecast-card {
-    width: 90%;
-    min-width: 90px;
+    width: 98%;
+    min-width: 80px;
     font-size: 11px;
     padding: 6px 2px;
-    border-radius: 8px;
+    border-radius: 6px;
   }
   .card-img, .forecast-card img, .current-weather img {
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
   }
 }
 
