@@ -326,7 +326,6 @@ header h5 {
 }
 
 /* Responsive Styles */
-
 /* For tablets (iPad, width ≤ 1024px) */
 @media screen and (max-width: 1024px) {
   .main-layout {
@@ -405,6 +404,12 @@ header h5 {
     box-shadow: none;
     padding: 10px 4px;
   }
+  .forecast-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 6px 2px;
+  }
   .weather-detail {
     font-size: 13px;
     width: 98%;
@@ -413,11 +418,14 @@ header h5 {
     margin: 8px auto;
   }
   .forecast-card {
-    width: 98%;
-    min-width: 80px;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     font-size: 11px;
     padding: 6px 2px;
     border-radius: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .card-img, .forecast-card img, .current-weather img {
     width: 40px;
